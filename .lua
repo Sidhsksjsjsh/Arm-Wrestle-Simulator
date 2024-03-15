@@ -36,6 +36,9 @@ local tbl = {
   a7 = false,
   tool = handle.toolname[1],
   zone2 = handle.zones[1]
+  a8 = false,
+  a9 = false,
+  a10 = false
 }
 
 for i,v in pairs(game:GetService("ReplicatedStorage").Tools:GetChildren()) do
@@ -88,6 +91,30 @@ T1:Toggle("Auto spin",false,function(value)
     while wait() do
       if tbl.a3 == false then break end
       game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["SpinService"]["RE"]["onSpinRequest"]:FireServer(false)
+    end
+end)
+
+T1:Toggle("Auto rebirth",false,function(value)
+    tbl.a8 = value
+    while wait() do
+      if tbl.a8 == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["RebirthService"]["RE"]["onRebirthRequest"]:FireServer()
+    end
+end)
+
+T1:Toggle("Auto claim eggs",false,function(value)
+    tbl.a9 = value
+    while wait() do
+      if tbl.a9 == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EventService"]["RF"]["ClaimEgg"]:InvokeServer()
+    end
+end)
+
+T1:Toggle("Auto roll titles",false,function(value)
+    tbl.a10 = value
+    while wait() do
+      if tbl.a10 == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TitleService"]["RF"]["Roll"]:InvokeServer()
     end
 end)
 
