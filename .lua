@@ -1,5 +1,7 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VAPE-UI-MODDED/main/.lua"))()
-local wndw = lib:Window("VIP Turtle Hub V4 - EGG HUNT 🔥👀")
+
+local iserror,error = pcall(function()
+local wndw = lib:Window("VIP Turtle Hub V4 - THE HUNT 🔥👀")
 local workspace = game:GetService("Workspace")
 
 local T1 = wndw:Tab("Main")
@@ -189,3 +191,8 @@ lib:HookFunction(function(method,self,args)
       tbl.delete = args[2]
     end
 end)
+end)
+
+if not iserror and game.Players.LocalPlayer.Name == "Rivanda_Cheater" then
+  lib:notify(error,20)
+end
