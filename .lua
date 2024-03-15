@@ -9,6 +9,7 @@ local T2 = wndw:Tab("Punch")
 local T3 = wndw:Tab("Fight")
 local T4 = wndw:Tab("Egg")
 local T5 = wndw:Tab("Tool")
+local T6 = wndw:Tab("THE HUNT: F.E")
 
 local handle = {
   egg = {},
@@ -19,7 +20,9 @@ local handle = {
   arms = {},
   tier1 = {"Tier1","Tier2","Tier3","Tier4","Tier5","Tier6"},
   self = game.Players.LocalPlayer,
-  toolname = {}
+  toolname = {},
+  hpt = {"Punch1","Punch2","Punch3","Punch4","Punch5","Punch6","Punch7"},
+  easter = {}
 }
 
 local tbl = {
@@ -40,7 +43,13 @@ local tbl = {
   zone2 = handle.zones[1],
   a8 = false,
   a9 = false,
-  a10 = false
+  a10 = false,
+  ht = false,
+  hp = false,
+  hpt = handle.hpt
+  hbf = false,
+  hsb = handle.easter[1],
+  hdmg = false
 }
 
 for i,v in pairs(game:GetService("ReplicatedStorage").Tools:GetChildren()) do
@@ -53,13 +62,58 @@ end
 
 --[[for i,v in pairs(workspace.GameObjects.ArmWrestling:GetChildren()) do
 lib:AddTable(v.PVP,handle.pvp)
-end]]
+end]]    
 
 lib:AddTable(game:GetService("ReplicatedStorage").Tools,handle.toolname)
 lib:AddTable(workspace.Zones,handle.zones)
 lib:AddTable(game:GetService("ReplicatedStorage").Arms,handle.arms)
 lib:AddTable(game:GetService("ReplicatedStorage").Eggs,handle.egg)
+lib:AddTable(workspace.Zones.Easter.Interactables.FightBosses,handle.easter)
+    
+T6:Toggle("Auto destroy eggs",false,function(value)
+    tbl.ht = value
+    while wait() do
+      if tbl.ht == false then break end
+      for i,v in pairs(workspace.GameObjects.Breakables:GetChildren()) do
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterZoneService"]["RF"]["HitBreakable"]:InvokeServer(v.Name)
+      end
+    end
+end)
 
+T6:Label("\/ PUNCH \/")
+T5:Dropdown("Select punch tier",handle.hpt,function(value)
+    tbl.hpt = value
+end)
+  
+T6:Toggle("Auto punch",false,function(value)
+    tbl.hpt = value
+    while wait() do
+      if tbl.hpt == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["PunchBagService"]["RE"]["onGiveStats"]:FireServer("Easter",tbl.hpt)
+    end
+end)
+
+T6:Label("\/ BOSS FIGHT \/")
+T6:Dropdown("Select easter boss",handle.easter,function(value)
+    tbl.hsb = value
+end)
+
+T6:Toggle("Auto fight",false,function(value)
+    tbl.hbf = value
+    while wait() do
+      if tbl.hbf == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterBossService"]["RF"]["StartFight"]:InvokeServer(tbl.hsb)
+    end
+end)
+
+T6:Toggle("Auto damage",false,function(value)
+    tbl.hdmg = value
+    while wait() do
+      if tbl.hdmg == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterBossService"]["RF"]["Damage"]:InvokeServer()
+    end
+end)
+    
 T1:Toggle("Auto click",false,function(value)
     tbl.a1 = value
     while wait() do
