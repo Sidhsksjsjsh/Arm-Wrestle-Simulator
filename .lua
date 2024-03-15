@@ -47,9 +47,9 @@ for i,v in pairs(workspace.GameObjects.ArmWrestling:GetChildren()) do
 lib:AddTable(v.NPC,handle.npc)
 end
 
-for i,v in pairs(workspace.GameObjects.ArmWrestling:GetChildren()) do
+--[[for i,v in pairs(workspace.GameObjects.ArmWrestling:GetChildren()) do
 lib:AddTable(v.PVP,handle.pvp)
-end
+end]]
 
 lib:AddTable(game:GetService("ReplicatedStorage").Tools,handle.toolname)
 lib:AddTable(workspace.Zones,handle.zones)
