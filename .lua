@@ -8,7 +8,6 @@ local T1 = wndw:Tab("Main")
 local T2 = wndw:Tab("Punch")
 local T3 = wndw:Tab("Fight")
 local T4 = wndw:Tab("Egg")
-local T5 = wndw:Tab("Tool")
 local T6 = wndw:Tab("THE HUNT: F.E")
 
 local handle = {
@@ -22,7 +21,11 @@ local handle = {
   self = game.Players.LocalPlayer,
   toolname = {},
   hpt = {"Punch1","Punch2","Punch3","Punch4","Punch5","Punch6","Punch7"},
-  easter = {}
+  easter = {},
+  character = game.Players.LocalPlayer.Character,
+  root = game.Players.LocalPlayer.Character.HumanoidRootPart,
+  position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position,
+  cframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 }
 
 local tbl = {
@@ -75,20 +78,22 @@ T6:Toggle("Auto destroy eggs",false,function(value)
     while wait() do
       if tbl.ht == false then break end
       for i,v in pairs(workspace.GameObjects.Breakables:GetChildren()) do
-            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterZoneService"]["RF"]["HitBreakable"]:InvokeServer(v.Name)
+            if (handle.root.position - v.Position).Magnitude < 15 then
+              game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterZoneService"]["RF"]["HitBreakable"]:InvokeServer(v.Name)
+            end
       end
     end
 end)
 
 T6:Label("\/ PUNCH \/")
-T5:Dropdown("Select punch tier",handle.hpt,function(value)
+T6:Dropdown("Select punch tier",handle.hpt,function(value)
     tbl.hpt = value
 end)
   
 T6:Toggle("Auto punch",false,function(value)
-    tbl.hpt = value
+    tbl.hp = value
     while wait() do
-      if tbl.hpt == false then break end
+      if tbl.hp == false then break end
       game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["PunchBagService"]["RE"]["onGiveStats"]:FireServer("Easter",tbl.hpt)
     end
 end)
@@ -226,25 +231,12 @@ T4:Toggle("Auto equip best",false,function(value)
     end
 end)
 
-T5:Dropdown("Select tool",handle.toolname,function(value)
-    tbl.tool = value
-end)
-
-T5:Dropdown("Select zone",handle.zone,function(value)
-    tbl.zone2 = value
-end)
-
-T5:Button("Equip tool",function()
-    for array = 1,#handle.tool do
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["ToolService"]["RE"]["onGuiEquipRequest"]:FireServer(tbl.zone2,tbl.tool,handle.tool[array])
-    end
-end)
-
 lib:HookFunction(function(method,self,args)
     if method == "InvokeServer" and self == "purchaseEgg" then
       tbl.delete = args[2]
     end
 end)
+
 end)
 
 if not iserror and game.Players.LocalPlayer.Name == "Rivanda_Cheater" then
