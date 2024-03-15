@@ -6,7 +6,6 @@ local T1 = wndw:Tab("Main")
 local T2 = wndw:Tab("Punch")
 local T3 = wndw:Tab("Fight")
 local T4 = wndw:Tab("Egg")
-local T4 = wndw:Tab("Egg")
 local T5 = wndw:Tab("Tool")
 
 local handle = {
