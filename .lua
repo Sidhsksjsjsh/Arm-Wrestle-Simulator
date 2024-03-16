@@ -9,6 +9,7 @@ local T2 = wndw:Tab("Punch")
 local T3 = wndw:Tab("Fight")
 local T4 = wndw:Tab("Egg")
 local T6 = wndw:Tab("THE HUNT: F.E")
+local T5 = wndw:Tab("Fishing | Garden")
 
 local handle = {
   egg = {},
@@ -52,7 +53,8 @@ local tbl = {
   hpt = handle.hpt,
   hbf = false,
   hsb = handle.easter[1],
-  hdmg = false
+  hdmg = false,
+  fish = false
 }
 
 for i,v in pairs(game:GetService("ReplicatedStorage").Tools:GetChildren()) do
@@ -72,7 +74,20 @@ lib:AddTable(workspace.Zones,handle.zones)
 lib:AddTable(game:GetService("ReplicatedStorage").Arms,handle.arms)
 lib:AddTable(game:GetService("ReplicatedStorage").Eggs,handle.egg)
 lib:AddTable(workspace.Zones.Easter.Interactables.FightBosses,handle.easter)
-    
+
+T5:Toggle("Set fish rod",false,function(value)
+        game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["ToolService"]["RF"]["SetFishRod"]:InvokeServer(value)
+end)
+
+T5:Toggle("Auto fishing",false,function(value)
+    tbl.fish = value
+    while wait() do
+      if tbl.fish == false then break end
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["NetService"]["RF"]["StartCatching"]:InvokeServer()
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["NetService"]["RF"]["VerifyCatch"]:InvokeServer(217,217.5391490459442)
+    end
+end)
+
 T6:Toggle("Auto destroy eggs",false,function(value)
     tbl.ht = value
     while wait() do
