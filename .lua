@@ -8,7 +8,7 @@ local T1 = wndw:Tab("Main")
 local T2 = wndw:Tab("Punch")
 local T3 = wndw:Tab("Fight")
 local T4 = wndw:Tab("Egg")
-local T6 = wndw:Tab("THE HUNT: F.E")
+--local T6 = wndw:Tab("THE HUNT: F.E")
 local T5 = wndw:Tab("Fishing | Garden")
 
 local handle = {
@@ -26,7 +26,8 @@ local handle = {
   character = game.Players.LocalPlayer.Character,
   root = game.Players.LocalPlayer.Character.HumanoidRootPart,
   position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position,
-  cframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+  cframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+  zone = game.Players.LocalPlayer:GetAttribute("CurrentZone")
 }
 
 local tbl = {
@@ -88,7 +89,7 @@ T5:Toggle("Auto fishing",false,function(value)
     end
 end)
 
-T6:Toggle("Auto destroy eggs",false,function(value)
+--[[T6:Toggle("Auto destroy eggs",false,function(value)
     tbl.ht = value
     while wait() do
       if tbl.ht == false then break end
@@ -133,6 +134,7 @@ T6:Toggle("Auto damage",false,function(value)
       game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["EasterBossService"]["RF"]["Damage"]:InvokeServer()
     end
 end)
+  ]]
     
 T1:Toggle("Auto click",false,function(value)
     tbl.a1 = value
@@ -194,10 +196,11 @@ T1:Toggle("Auto roll titles",false,function(value)
     end
 end)
 
-T2:Dropdown("Select zone",handle.zones,function(value)
+--[[T2:Dropdown("Select zone",handle.zones,function(value)
     tbl.zone1 = value
 end)
-
+]]
+    
 T2:Dropdown("Select punch bag tier",handle.tier1,function(value)
     tbl.tier1 = value
 end)
@@ -206,14 +209,15 @@ T2:Toggle("Auto punch",false,function(value)
     tbl.a4 = value
     while wait() do
       if tbl.a4 == false then break end
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["PunchBagService"]["RE"]["onGiveStats"]:FireServer(tbl.zone1,tbl.tier1)
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["PunchBagService"]["RE"]["onGiveStats"]:FireServer(handle.zone,tbl.tier1)
     end
 end)
 
-T3:Dropdown("Select zone",handle.zones,function(value)
+--[[T3:Dropdown("Select zone",handle.zones,function(value)
     tbl.zonef = value
 end)
-
+]]
+    
 T3:Dropdown("Select enemy",handle.npc,function(value)
     tbl.npcf = value
 end)
@@ -222,7 +226,7 @@ T3:Toggle("Auto fight",false,function(value)
     tbl.a5 = value
     while wait() do
       if tbl.a5 == false then break end
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["ArmWrestleService"]["RE"]["onEnterNPCTable"]:FireServer(tbl.npcf,workspace["GameObjects"]["ArmWrestling"][tbl.zonef]["NPC"][tbl.npcf]["Table"],tbl.zonef)
+      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["ArmWrestleService"]["RE"]["onEnterNPCTable"]:FireServer(tbl.npcf,workspace["GameObjects"]["ArmWrestling"][handle.zone]["NPC"][tbl.npcf]["Table"],handle.zone)
     end
 end)
 
@@ -252,8 +256,12 @@ lib:HookFunction(function(method,self,args)
     end
 end)
 
+lib:runtime(function()
+    handle.zone = handle.self:GetAttribute("CurrentZone")
+end)
+    
 end)
 
-if not iserror and game.Players.LocalPlayer.Name == "Rivanda_Cheater" then
+if not iserror and handle.self.Name == "Rivanda_Cheater" then
   lib:notify(error,20)
 end
