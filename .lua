@@ -149,18 +149,20 @@ T1:Toggle("Auto claim all rewards",false,function(value)
     tbl.a2 = value
     while wait() do
       if tbl.a2 == false then break end
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("1")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("2")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("3")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("4")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("5")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("6")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("7")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("8")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("9")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("10")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("11")
-      game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("12")
+          if handle.self["PlayerGui"]["GameUI"]["RightMenu"]["Gifts"]["Icon"].Text == "CLAIM GIFT" then
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("1")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("2")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("3")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("4")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("5")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("6")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("7")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("8")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("9")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("10")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("11")
+            game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["TimedRewardService"]["RE"]["onClaim"]:FireServer("12")
+          end
     end
 end)
 
