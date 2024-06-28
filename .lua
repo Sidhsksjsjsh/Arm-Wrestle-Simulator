@@ -1,7 +1,7 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VAPE-UI-MODDED/main/.lua"))()
 --a
 local iserror,error = pcall(function()
-local wndw = lib:Window("VIP Turtle Hub V4 - THE HUNT 🔥👀")
+local wndw = lib:Window("VIP Turtle Hub V4")
 local workspace = game:GetService("Workspace")
 
 local T1 = wndw:Tab("Main")
