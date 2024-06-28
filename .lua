@@ -264,6 +264,6 @@ end)
     
 end)
 
-if not iserror and handle.self.Name == "Rivanda_Cheater" then
+if not iserror and game:GetService("Players").LocalPlayer.Name == "Rivanda_Cheater" then
   lib:notify(error,20)
 end
