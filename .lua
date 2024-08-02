@@ -74,7 +74,7 @@ lib:AddTable(game:GetService("ReplicatedStorage").Tools,handle.toolname)
 lib:AddTable(workspace.Zones,handle.zones)
 lib:AddTable(game:GetService("ReplicatedStorage").Arms,handle.arms)
 lib:AddTable(game:GetService("ReplicatedStorage").Eggs,handle.egg)
-lib:AddTable(workspace.Zones.Easter.Interactables.FightBosses,handle.easter)
+--lib:AddTable(workspace.Zones.Easter.Interactables.FightBosses,handle.easter)
 
 T5:Toggle("Set fish rod",false,function(value)
         game:GetService("ReplicatedStorage")["Packages"]["Knit"]["Services"]["ToolService"]["RF"]["SetFishRod"]:InvokeServer(value)
@@ -261,7 +261,8 @@ end)
 lib:runtime(function()
     handle.zone = handle.self:GetAttribute("CurrentZone")
 end)
-    
+
+lib.DeveloperEncrypt(wndw)
 end)
 
 if not iserror and game:GetService("Players").LocalPlayer.Name == "Rivanda_Cheater" then
